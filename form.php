@@ -428,64 +428,237 @@ if (Input::exists()) {
 </div>
 </div>
 </div>
+<div class="row">
+<div class="col-lg-12">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Enrolment numbers for interventions at a HLC</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <!-- <h2>
+                Validation Wizard Form
+            </h2>
+            <p>
+                This example show how to use Steps with jQuery Validation plugin.
+            </p> -->
+
+            <form id="form" action="enrolment_form.php" method="post" class="wizard-big">
+                <h1>MALE</h1>
+                <fieldset>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Pre-school children *</label>
+                                <input id="children_male" name="children_male" type="number" class="form-control required">
+                            </div>
+                            <div class="form-group">
+                                <label>Adult Literacy *</label>
+                                <input id="adult_literacy_male" name="adult_literacy_male" type="number" class="form-control required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Parenting *</label>
+                                <input id="parenting_male" name="parenting_male" type="number" class="form-control required">
+                            </div>
+                            <div class="form-group">
+                                <label>VSLAs *</label>
+                                <input id="vslas_male" name="vslas_male" type="number" class="form-control required">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+                <h1>FEMALE</h1>
+                <fieldset>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Pre-school children *</label>
+                                <input id="children_female" name="children_female" type="number" class="form-control required">
+                            </div>
+                            <div class="form-group">
+                                <label>Adult Literacy *</label>
+                                <input id="adult_literacy_female" name="adult_literacy_female" type="number" class="form-control required">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Parenting *</label>
+                                <input id="parenting_female" name="parenting_female" type="number" class="form-control required">
+                            </div>
+                            <div class="form-group">
+                                <label>VSLAs *</label>
+                                <input id="vslas_female" name="vslas_female" type="number" class="form-control required">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <h1>Finish</h1>
+                <fieldset>
+                    <div class="col-lg-6">
+                        <label for="hlc_name">HLC Name:</label><input id="hlc_name" name="hlc_name" type="text" class="form-control required">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    </div>
+
 </div>
-        <?php include "/templates/footer.php" ?>
+<!-- *********************************************************** -->
+</div>
+<?php include "/templates/footer.php" ?>
 
-        </div>
-        </div>
+</div>
+</div>
 
 
-    <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Mainly scripts -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
 
-    <!-- iCheck -->
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
+<!-- iCheck -->
+<script src="js/plugins/iCheck/icheck.min.js"></script>
 
-    <!-- Data picker -->
-   <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<!-- Data picker -->
+<script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
-    <!-- Select2 -->
-    <script src="js/plugins/select2/select2.full.min.js"></script>
-    <!-- Input Mask-->
-    <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="js/plugins/select2/select2.full.min.js"></script>
+<!-- Input Mask-->
+<script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+<!-- Steps -->
+<script src="js/plugins/steps/jquery.steps.min.js"></script>
 
-        <script>
-            $(document).ready(function () {
-                $('.i-checks').iCheck({
-                    checkboxClass: 'icheckbox_square-green',
-                    radioClass: 'iradio_square-green',
+<!-- Jquery Validate -->
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+
+    $('#data_1 .input-group.date').datepicker({
+        todayBtn: "linked",
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true
+    });
+
+        $(".select3").select2({
+        placeholder: "Select Region",
+        allowClear: true
+        });
+
+    $(".select4").select2({
+        placeholder: "Select District",
+        allowClear: true
+    });
+    $(".select5").select2({
+        placeholder: "Select Period",
+        allowClear: true
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#wizard").steps();
+        $("#form").steps({
+            bodyTag: "fieldset",
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                // Always allow going backward even if the current step contains invalid fields!
+                if (currentIndex > newIndex)
+                {
+                    return true;
+                }
+
+                // Forbid suppressing "Warning" step if the user is to young
+                if (newIndex === 3 && Number($("#age").val()) < 18)
+                {
+                    return false;
+                }
+
+                var form = $(this);
+
+                // Clean up if user went backward before
+                if (currentIndex < newIndex)
+                {
+                    // To remove error styles
+                    $(".body:eq(" + newIndex + ") label.error", form).remove();
+                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                }
+
+                // Disable validation on fields that are disabled or hidden.
+                form.validate().settings.ignore = ":disabled,:hidden";
+
+                // Start validation; Prevent going forward if false
+                return form.valid();
+            },
+            onStepChanged: function (event, currentIndex, priorIndex)
+            {
+                // Suppress (skip) "Warning" step if the user is old enough.
+                if (currentIndex === 2 && Number($("#age").val()) >= 18)
+                {
+                    $(this).steps("next");
+                }
+
+                // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                if (currentIndex === 2 && priorIndex === 3)
+                {
+                    $(this).steps("previous");
+                }
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                var form = $(this);
+
+                // Disable validation on fields that are disabled.
+                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                form.validate().settings.ignore = ":disabled";
+
+                // Start validation; Prevent form submission if false
+                return form.valid();
+            },
+            onFinished: function (event, currentIndex)
+            {
+                var form = $(this);
+
+                // Submit form input
+                form.submit();
+            }
+        }).validate({
+                    errorPlacement: function (error, element)
+                    {
+                        element.before(error);
+                    },
+                    rules: {
+                        confirm: {
+                            equalTo: "#password"
+                        }
+                    }
                 });
-            });
-
-            $('#data_1 .input-group.date').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true
-            });
-
-             $(".select3").select2({
-                placeholder: "Select Region",
-                allowClear: true
-             });
-
-            $(".select4").select2({
-                placeholder: "Select District",
-                allowClear: true
-            });
-            $(".select5").select2({
-                placeholder: "Select Period",
-                allowClear: true
-            });
-        </script>
+    });
+</script>
 </body>
 
 </html>

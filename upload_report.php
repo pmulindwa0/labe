@@ -29,7 +29,7 @@ if (Input::exists()) {
 
             if (in_array($file_ext, $allowed)) {
                 if ($file_error === 0) {
-                    if ($file_size <= 5097152) {
+                    if ($file_size <= 20971520) {
                         $file_name_new = uniqid('', true) . '.' . $file_ext;
                         $file_destination = "reports/" . $file_name_new;
 
@@ -237,7 +237,7 @@ if (Input::exists()) {
     <script>
         Dropzone.options.dropzoneForm = {
             paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
+            maxFilesize: 20, // MB
             dictDefaultMessage: "<strong>Drop files here or click to upload. </strong></br> <small>(The file should not exceed 2Mbs.) </small>"
         };
 

@@ -27,7 +27,7 @@
                         <img src="images/logo.png" alt="logo">
                     </div>
                     <div class="col-6 align-self-center text-right">
-                        <a href="www.labeuganda.org" class="text-white lead">Proceed to LABE Website</a>
+                        <a href="http://labeuganda.org/web/" class="text-white lead" target="_blank">Proceed to LABE Website</a>
                     </div>
                 </div>
             </header>
