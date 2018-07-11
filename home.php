@@ -1,6 +1,30 @@
 <?php 
 require_once '/core/init.php';
  include_once '/templates/header.php';
+
+$avg_children_male = 0;
+$avg_adult_literacy_male = 0;
+$avg_parenting_male = 0;
+$avg_vslas_male = 0;
+$avg_children_female = 0;
+$avg_adult_literacy_female = 0;
+$avg_parenting_female = 0;
+$avg_vslas_female = 0;
+  
+ $numbers = DB::getInstance()->query("SELECT COUNT(hlc_name) AS count, AVG(children_male) AS children_male, AVG(adult_literacy_male) AS adult_literacy_male,
+        AVG(parenting_male) AS parenting_male, AVG(vslas_male) AS vslas_male, AVG(children_female) AS children_female, AVG(adult_literacy_female) AS adult_literacy_female,
+        AVG(parenting_female) AS parenting_female, AVG(vslas_female) AS vslas_female, MAX(submitted_on) AS last_update FROM enrolment_form"); 
+        
+        $avg_children_male = $numbers->first()->children_male;
+        $avg_adult_literacy_male = $numbers->first()->adult_literacy_male;
+        $avg_parenting_male = $numbers->first()->parenting_male;
+        $avg_vslas_male = $numbers->first()->vslas_male;
+        $avg_children_female = $numbers->first()->children_female;
+        $avg_adult_literacy_female = $numbers->first()->adult_literacy_female;
+        $avg_parenting_female = $numbers->first()->parenting_female;
+        $avg_vslas_female = $numbers->first()->vslas_female;
+        $updated = $numbers->first()->last_update;
+        $count = $numbers->first()->count;
 ?>
 
 <body class="fixed-navigation">
@@ -15,16 +39,11 @@ require_once '/core/init.php';
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                     <div>
-                                        <span class="pull-right text-right">
-                                        <small>Average value of sales in the past month in: <strong>United states</strong></small>
-                                            <br/>
-                                            All sales: 162,862
-                                        </span>
-                                        <h1 class="m-b-xs">$ 50,992</h1>
+                                        <h1 class="m-b-xs"><?php echo $count; ?></h1>
                                         <h3 class="font-bold no-margins">
-                                            Half-year revenue margin
+                                            Home Learning Center(s)
                                         </h3>
-                                        <small>Sales marketing.</small>
+                                        <small>Enrolled.</small>
                                     </div>
 
                                 <div>
@@ -34,10 +53,10 @@ require_once '/core/init.php';
                                 <div class="m-t-md">
                                     <small class="pull-right">
                                         <i class="fa fa-clock-o"> </i>
-                                        Update on 16.07.2015
+                                        Update on <?php echo date('jS-M-Y', strtotime($updated));?>
                                     </small>
                                    <small>
-                                       <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
+                                       <strong>Analysis of Enrolments:</strong> The averages for interventions at different HLC.
                                    </small>
                                 </div>
 
@@ -129,25 +148,28 @@ require_once '/core/init.php';
 
     <script>
         $(document).ready(function() {
+            <?php
+               
+            ?>
 
             var lineData = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: ["Pre-School Children", "Adult Literacy", "Parenting", "VSLAs"],
                 datasets: [
                     {
-                        label: "Example dataset",
+                        label: "Male",
                         backgroundColor: "rgba(26,179,148,0.5)",
                         borderColor: "rgba(26,179,148,0.7)",
                         pointBackgroundColor: "rgba(26,179,148,1)",
                         pointBorderColor: "#fff",
-                        data: [28, 48, 40, 19, 86, 27, 90]
+                        data: [<?php echo $avg_children_male ?>, <?php echo $avg_adult_literacy_male ?>, <?php echo $avg_parenting_male ?>, <?php echo $avg_vslas_male ?>]
                     },
                     {
-                        label: "Example dataset",
+                        label: "Female",
                         backgroundColor: "rgba(220,220,220,0.5)",
                         borderColor: "rgba(220,220,220,1)",
                         pointBackgroundColor: "rgba(220,220,220,1)",
                         pointBorderColor: "#fff",
-                        data: [65, 59, 80, 81, 56, 55, 40]
+                        data: [<?php echo $avg_children_female ?>, <?php echo $avg_adult_literacy_female ?>, <?php echo $avg_parenting_female ?>, <?php echo $avg_vslas_female ?>]
                     }
                 ]
             };
